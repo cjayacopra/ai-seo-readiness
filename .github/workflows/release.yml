@@ -22,15 +22,15 @@ jobs:
           # Create a staging directory to ensure the zip has the correct internal folder structure
           mkdir -p "build/${SLUG}"
           
-          # Copy only the necessary plugin files from the plugin directory
-          # Note: Assuming the action runs from the repo root and the plugin is in the 'ai-seo-readiness' subfolder
-          cp -r ai-seo-readiness/assets build/${SLUG}/
-          cp -r ai-seo-readiness/includes build/${SLUG}/
-          cp -r ai-seo-readiness/plugin-update-checker build/${SLUG}/
-          cp -r ai-seo-readiness/templates build/${SLUG}/
-          cp ai-seo-readiness/README.md build/${SLUG}/
-          cp ai-seo-readiness/readme.txt build/${SLUG}/
-          cp ai-seo-readiness/site-ai-auditor.php build/${SLUG}/
+          # Copy only the necessary plugin files
+          # Since the repository root IS the plugin root, we copy from the current directory
+          cp -r assets build/${SLUG}/
+          cp -r includes build/${SLUG}/
+          cp -r plugin-update-checker build/${SLUG}/
+          cp -r templates build/${SLUG}/
+          cp README.md build/${SLUG}/
+          cp readme.txt build/${SLUG}/
+          cp site-ai-auditor.php build/${SLUG}/
           
           # Create the zip file
           cd build
