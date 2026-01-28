@@ -9,7 +9,7 @@ A high-performance WordPress plugin that mimics AI crawlers to evaluate your web
 -   **Evidence-Based Reporting:** Highlights specific issues (e.g., "Missing Alt Text on 3 images") with code snippets and actionable fixes.
 -   **Secure & Performant:** Uses WordPress nonces for security and optimizes DOM parsing for speed.
 
-## Scoring Matrix (v2.0)
+## Scoring Matrix
 
 The audit evaluates your page across 9 categories:
 

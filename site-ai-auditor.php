@@ -62,10 +62,10 @@ class WebCrawler {
     // Add a plugin menu to WP Admin
     public function wc_plugin_menu() {
         add_menu_page(
-            'Web Crawler', 
-            'Web Crawler', 
+            'AI SEO Readiness Auditor', 
+            'AI SEO Readiness Auditor', 
             'manage_options', 
-            'web-crawler', 
+            'ai-seo-readiness', 
             [$this, 'handle_wc_menu_click']
         );
     }
@@ -79,7 +79,7 @@ class WebCrawler {
     // Handle Menu Click
     public function handle_wc_menu_click() {
        ?>
-        <div class="wrap webcrawler-wrapper">
+        <div class="wrap ai-seo-readiness-wrapper">
             <h2>Test Your Website</h2>
             <p class="desc">
                 Enter a website URL to extract the metadata, headings, images and links.

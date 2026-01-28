@@ -1,5 +1,5 @@
 === AI SEO Readiness Auditor ===
-Contributors: cjayacopra
+Contributors: CJay D Acopra
 Tags: seo, ai, audit, crawler, accessibility, structured-data, schema, readability, technical-seo
 Requires at least: 5.0
 Tested up to: 6.4
