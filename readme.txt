@@ -16,7 +16,7 @@ AI SEO Readiness Auditor is a high-performance WordPress plugin designed to help
 
 Unlike traditional SEO tools, this auditor focuses on **Machine Readability** and **Content Clarity**, using a 9-category weighted matrix to provide a "Crawler Visibility" score.
 
-### Key Features:
+**Key Features:**
 *   **Weighted Scoring Matrix:** A 0-100 score based on Title, Metadata, Page Structure, Content Clarity, Readability, Image Alt Text, AI Clarity, Schema, and Technical SEO.
 *   **Evidence-Based Reporting:** Don't just get a score; see the exact HTML elements that need fixing (e.g., missing alt tags, empty links, or heading gaps).
 *   **JS Dependency Detection:** Heuristically identifies if your site relies on Client-Side Rendering (CSR), which might render it invisible to certain AI crawlers.
@@ -25,9 +25,11 @@ Unlike traditional SEO tools, this auditor focuses on **Machine Readability** an
 
 == Installation ==
 
-1. Upload the `ai-seo-readiness` folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Access the auditor via the 'Web Crawler' menu in your admin dashboard, or use the shortcode `[ai-seo-readiness]` on any page.
+1. Download the latest `ai-seo-readiness.zip` from the [Releases](https://github.com/cjayacopra/ai-seo-readiness/releases) page.
+2. In your WordPress dashboard, go to **Plugins > Add New > Upload Plugin**.
+3. Select the downloaded `.zip` file and click **Install Now**.
+4. Activate the plugin.
+5. Access the auditor via the 'Web Crawler' menu in your admin dashboard, or use the shortcode `[ai-seo-readiness]` on any page.
 
 == Frequently Asked Questions ==
 
@@ -36,11 +38,6 @@ The score is a weighted average of 9 categories, with **Content Clarity** (20%) 
 
 = Does this affect my SEO rankings? =
 This tool is an auditor; it identifies gaps. Fixing the issues it highlights (like adding Schema or improving H1/H2 hierarchy) is a proven way to improve visibility for both AI and traditional search engines.
-
-== Screenshots ==
-
-1. The main audit interface showing the Crawler Visibility Score and metrics.
-2. The detailed "Fix-it List" with HTML evidence and actionable advice.
 
 == Changelog ==
 

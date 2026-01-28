@@ -25,9 +25,11 @@ The audit evaluates your page across 9 categories:
 
 ## Installation
 
-1.  Upload the `ai-seo-readiness` folder to the `/wp-content/plugins/` directory.
-2.  Activate the plugin through the 'Plugins' menu in WordPress.
-3.  Use the shortcode `[ai-seo-readiness]` on any page to display the audit tool, or access it via the admin menu.
+1.  Download the latest `ai-seo-readiness.zip` from the [Releases](https://github.com/cjayacopra/ai-seo-readiness/releases) page.
+2.  In your WordPress dashboard, go to **Plugins > Add New > Upload Plugin**.
+3.  Select the downloaded `.zip` file and click **Install Now**.
+4.  Activate the plugin.
+5.  Use the shortcode `[ai-seo-readiness]` on any page to display the audit tool, or access it via the admin menu.
 
 ## Usage
 
