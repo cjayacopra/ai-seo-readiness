@@ -1,12 +1,13 @@
-<?php 
+<?php
 /**
  * Plugin Name: AI SEO Readiness Auditor
  * Description: A high-performance SEO auditor that mimics AI crawlers to evaluate title tags, metadata, heading hierarchies, and image accessibility. Includes advanced heuristic detection for JavaScript-based sites and a scoring matrix to identify visibility gaps in the "first wave" of AI indexing.
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: CJay D Acopra
  */
 
-if( !defined('ABSPATH') ) exit;
+if (!defined('ABSPATH'))
+    exit;
 require_once plugin_dir_path(__FILE__) . 'includes/class-auditor-scan.php';
 require_once plugin_dir_path(__FILE__) . 'includes/class-js-detector.php';
 require_once plugin_dir_path(__FILE__) . 'plugin-update-checker/plugin-update-checker.php';
@@ -14,9 +15,9 @@ require_once plugin_dir_path(__FILE__) . 'plugin-update-checker/plugin-update-ch
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
-	'https://github.com/cjayacopra/ai-seo-readiness',
-	__FILE__,
-	'ai-seo-readiness'
+    'https://github.com/cjayacopra/ai-seo-readiness',
+    __FILE__,
+    'ai-seo-readiness'
 );
 
 // Set the branch that contains the stable release.
@@ -25,11 +26,12 @@ $myUpdateChecker->setBranch('main');
 // Enable release assets
 $myUpdateChecker->getVcsApi()->enableReleaseAssets();
 
-class WebCrawler {
+class WebCrawler
+{
 
     public function __construct()
     {
-         // Admin menu
+        // Admin menu
         add_action('admin_menu', [$this, 'wc_plugin_menu']);
         add_action("admin_enqueue_scripts", [$this, 'wc_plugin_assets']);
 
@@ -45,40 +47,44 @@ class WebCrawler {
     }
 
     // Add Plugin Assets [css, js] to plugin
-    public function wc_plugin_assets() {
+    public function wc_plugin_assets()
+    {
         // CSS
         wp_enqueue_style('wc-style', plugin_dir_url(__FILE__) . 'assets/style.css');
 
-        // JS - Incremented version to 2.0.0 for cache-busting
-        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.0.0', true);
+        // JS - Incremented version to 2.1.0 for cache-busting
+        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.1.0', true);
 
         // Add variables like ajaxurl and security nonce
         wp_localize_script('wc-script', 'wcVars', [
             'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('wc_crawl_nonce')
+            'nonce' => wp_create_nonce('wc_crawl_nonce')
         ]);
     }
 
     // Add a plugin menu to WP Admin
-    public function wc_plugin_menu() {
+    public function wc_plugin_menu()
+    {
         add_menu_page(
-            'AI SEO Readiness Auditor', 
-            'AI SEO Readiness Auditor', 
-            'manage_options', 
-            'ai-seo-readiness', 
+            'AISEO Auditor',
+            'AISEO Auditor',
+            'manage_options',
+            'ai-seo-auditor',
             [$this, 'handle_wc_menu_click']
         );
     }
 
-    public function render_shortcode() {
+    public function render_shortcode()
+    {
         ob_start();
         $this->handle_wc_menu_click();
         return ob_get_clean();
     }
 
     // Handle Menu Click
-    public function handle_wc_menu_click() {
-       ?>
+    public function handle_wc_menu_click()
+    {
+        ?>
         <div class="wrap ai-seo-readiness-wrapper">
             <h2>Test Your Website</h2>
             <p class="desc">
@@ -92,22 +98,23 @@ class WebCrawler {
 
             <div id="results"></div>
         </div>
-       <?php
+        <?php
     }
 
-    public function ajax_handler() {
+    public function ajax_handler()
+    {
         // Security: Nonce verification
         check_ajax_referer('wc_crawl_nonce', 'security');
 
         $websiteURL = esc_url_raw($_POST['website_url']);
-        
+
         // Performance: Single fetch with Chrome User-Agent and 30s timeout
         $response = wp_remote_get($websiteURL, [
-            'timeout'    => 30,
+            'timeout' => 30,
             'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36'
         ]);
 
-        if( is_wp_error($response) ) {
+        if (is_wp_error($response)) {
             wp_send_json_error([
                 'error' => 'Unable to fetch the URL data: ' . $response->get_error_message()
             ]);
@@ -134,41 +141,41 @@ class WebCrawler {
         libxml_clear_errors();
 
         $reports = [
-            'title' => ($titleTag = $domObject->getElementsByTagName('title')->item(0)) 
-                        ? trim($titleTag->textContent) 
-                        : 'N/A',
-            'meta_description'  => '',
-            'meta_robots'       => '',
-            'headings'          => [],
-            'paragraphs'        => [],
-            'images'            => [],
-            'links'             => [],
-            'internal_links'    => [],
-            'schema'            => [],
-            'text_length'       => 0,
-            'html_length'       => strlen($html),
-            'list_elements'     => 0,
-            'sentence_count'    => 0,
-            'avg_sentence_len'  => 0,
-            'avg_para_len'      => 0,
-            'js_detection'      => $js_detection,
-            'viewport'          => '',
-            'identity_signals'  => [],
-            'evidence_raw'      => [
+            'title' => ($titleTag = $domObject->getElementsByTagName('title')->item(0))
+                ? trim($titleTag->textContent)
+                : 'N/A',
+            'meta_description' => '',
+            'meta_robots' => '',
+            'headings' => [],
+            'paragraphs' => [],
+            'images' => [],
+            'links' => [],
+            'internal_links' => [],
+            'schema' => [],
+            'text_length' => 0,
+            'html_length' => strlen($html),
+            'list_elements' => 0,
+            'sentence_count' => 0,
+            'avg_sentence_len' => 0,
+            'avg_para_len' => 0,
+            'js_detection' => $js_detection,
+            'viewport' => '',
+            'identity_signals' => [],
+            'evidence_raw' => [
                 'missing_alt' => [],
                 'empty_links' => [],
-                'h1_tags'     => [],
+                'h1_tags' => [],
             ]
         ];
 
 
         // Performance: Optimized meta extraction in a single loop
-        foreach($domObject->getElementsByTagName('meta') as $meta) {
-            $name    = strtolower($meta->getAttribute("name"));
+        foreach ($domObject->getElementsByTagName('meta') as $meta) {
+            $name = strtolower($meta->getAttribute("name"));
             $property = strtolower($meta->getAttribute("property"));
             $content = trim($meta->getAttribute('content'));
-            
-            if( $name == "description" || $property == "og:description" ) {
+
+            if ($name == "description" || $property == "og:description") {
                 $reports['meta_description'] = $content;
             }
 
@@ -183,8 +190,8 @@ class WebCrawler {
 
         // Heading [H1 -> H6] & Identity Signals
         $identityKeywords = ['about', 'contact', 'service', 'product', 'privacy', 'term'];
-        foreach(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $headTag) {
-            foreach($domObject->getElementsByTagName($headTag) as $node) {
+        foreach (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as $headTag) {
+            foreach ($domObject->getElementsByTagName($headTag) as $node) {
                 $text = trim($node->textContent);
                 $reports['headings'][] = [
                     'tag' => $headTag,
@@ -193,7 +200,7 @@ class WebCrawler {
                 if ($headTag === 'h1') {
                     $reports['evidence_raw']['h1_tags'][] = $text;
                 }
-                
+
                 // Check for identity signals in headings
                 foreach ($identityKeywords as $keyword) {
                     if (stripos($text, $keyword) !== false) {
@@ -205,19 +212,32 @@ class WebCrawler {
 
         // Paragraphs & Text Analysis
         $totalSentences = 0;
+        $complexSentences = 0;
+
         foreach ($domObject->getElementsByTagName('p') as $p) {
             $text = trim($p->textContent);
             if ($text !== '') {
                 $reports['paragraphs'][] = $text;
                 $wordCount = str_word_count($text);
                 $reports['text_length'] += $wordCount;
-                
+
                 // Estimate sentences
                 $sentences = preg_split('/[.!?]+/', $text, -1, PREG_SPLIT_NO_EMPTY);
-                $totalSentences += count($sentences);
+                $count = count($sentences);
+                $totalSentences += $count;
+
+                // Check for complex sentences
+                foreach ($sentences as $sentence) {
+                    if (str_word_count($sentence) > 25) {
+                        $complexSentences++;
+                        $reports['complex_sentences_list'][] = trim($sentence);
+                    }
+                }
             }
         }
         $reports['sentence_count'] = $totalSentences;
+        $reports['complex_sentence_count'] = $complexSentences;
+        $reports['complex_sentences_list'] = $reports['complex_sentences_list'] ?? []; // Ensure it exists
         if ($totalSentences > 0) {
             $reports['avg_sentence_len'] = $reports['text_length'] / $totalSentences;
         }
@@ -226,15 +246,87 @@ class WebCrawler {
         }
 
         // Images
-        foreach($domObject->getElementsByTagName('img') as $imageTag) {
+        // Images
+        $decorativeFilenames = [
+            'spacer',
+            'separator',
+            'pixel',
+            'divider',
+            'background',
+            'bullet',
+            // Social Media Icons (Excluded per user request)
+            'facebook',
+            'twitter',
+            'instagram',
+            'linkedin',
+            'youtube',
+            'tiktok',
+            'social',
+            'icon'
+        ];
+
+        foreach ($domObject->getElementsByTagName('img') as $imageTag) {
             $src = $imageTag->getAttribute('src');
-            $alt = $imageTag->getAttribute('alt');
+            $alt = $imageTag->getAttribute('alt'); // Returns empty string if alt="" OR if missing
+            $hasAlt = $imageTag->hasAttribute('alt');
+
+            // Decorative Check 1: Explicit alt=""
+            if ($hasAlt && $alt === '') {
+                continue;
+            }
+
+            // Decorative Check 2: ARIA/Role
+            $role = $imageTag->getAttribute('role');
+            $ariaHidden = $imageTag->getAttribute('aria-hidden');
+            if ($role === 'presentation' || $role === 'none' || $ariaHidden === 'true') {
+                continue;
+            }
+
+            // Decorative Check 3: Filename
+            $filename = strtolower(basename($src));
+            foreach ($decorativeFilenames as $dName) {
+                if (strpos($filename, $dName) !== false) {
+                    continue 2; // Skip this image
+                }
+            }
+
+            // Decorative Check 4: Context (Child of Text-Heavy Link/Button OR Social Link)
+            $parent = $imageTag->parentNode;
+            while ($parent && $parent->nodeName !== 'body') {
+                $nodeName = strtolower($parent->nodeName);
+                if ($nodeName === 'a' || $nodeName === 'button') {
+                    // Check A: Has text content or ARIA label/Title
+                    $parentText = trim($parent->textContent);
+                    $parentAria = $parent->getAttribute('aria-label');
+                    $parentTitle = $parent->getAttribute('title');
+
+                    if (strlen($parentText) > 2 || !empty($parentAria) || !empty($parentTitle)) {
+                        continue 2; // Likely an icon next to text OR the link itself is described
+                    }
+
+                    // Check B: Is Social Media Link (even if no text)
+                    if ($nodeName === 'a') {
+                        $href = strtolower($parent->getAttribute('href'));
+                        $socialDomains = ['facebook.com', 'twitter.com', 'x.com', 'instagram.com', 'linkedin.com', 'youtube.com', 'tiktok.com', 'pinterest.com'];
+                        foreach ($socialDomains as $domain) {
+                            if (strpos($href, $domain) !== false) {
+                                continue 3; // Skip this image (break out of loop AND parent search)
+                            }
+                        }
+                    }
+                    break;
+                }
+                $parent = $parent->parentNode;
+            }
+
+            // If we are here, it's a MEANINGFUL image
             $reports['images'][] = [
                 'src' => $src,
                 'alt' => $alt
             ];
-            
-            if (empty($alt)) {
+
+            // Check for Missing Alt (Only for meaningful images)
+            if (!$hasAlt) {
                 $reports['evidence_raw']['missing_alt'][] = [
                     'src' => $src,
                     'tag' => '<img src="' . esc_attr($src) . '">'
@@ -251,14 +343,15 @@ class WebCrawler {
 
         // Internal Links 
         $parsedUrl = parse_url($websiteURL);
-        $baseHost  = $parsedUrl['host'] ?? '';
+        $baseHost = $parsedUrl['host'] ?? '';
 
         foreach ($domObject->getElementsByTagName('a') as $a) {
             $href = trim($a->getAttribute('href'));
             $text = trim($a->textContent);
             $aria = $a->getAttribute('aria-label');
 
-            if (!$href) continue;
+            if (!$href)
+                continue;
 
             $reports['links'][] = $href;
 
@@ -270,7 +363,7 @@ class WebCrawler {
             if (empty($text) && empty($aria)) {
                 $reports['evidence_raw']['empty_links'][] = [
                     'href' => $href,
-                    'tag'  => '<a href="' . esc_attr($href) . '"></a>'
+                    'tag' => '<a href="' . esc_attr($href) . '"></a>'
                 ];
             }
 
@@ -295,10 +388,10 @@ class WebCrawler {
 
         // Run Auditor Scan
         $auditor = new Site_Auditor_Scan($reports);
-        $scores  = $auditor->getScores();
+        $scores = $auditor->getScores();
         $evidence = $auditor->getEvidence();
         $js_analysis = $auditor->getJSAnalysis();
-        $total   = $auditor->getTotal();
+        $total = $auditor->getTotal();
         $remarks = $auditor->getRemarks();
 
 

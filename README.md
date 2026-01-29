@@ -2,6 +2,19 @@
 
 A high-performance WordPress plugin that mimics AI crawlers to evaluate your website's visibility to Large Language Models (LLMs) and search engines. It provides a weighted "Crawler Visibility" score and actionable, evidence-based reporting.
 
+## Changelog
+
+### v2.1.0 (Scoring Accuracy Update)
+*   **Refactor:** Converted "Readability" and "Image Alt Text" to a precise percentage-based scoring system (0-100).
+*   **Feature:** Added complex sentence detection (>25 words) with list-based evidence reporting.
+*   **Enhancement:** Improved "Fix-it List" UI with category labels and detailed dropdowns.
+*   **Enhancement:** Refined decorative image filtering (ignoring social icons, smart links, and decorative filenames).
+
+### v2.0.0 (Major Overhaul)
+*   **New Scoring Matrix:** Transitioned to a 9-category weighted model (v2.0).
+*   **Evidence-Based Reporting:** Enhanced DOM crawler to extract exact HTML snippets for issues.
+*   **JS Detection:** Added heuristic detection for Client-Side Rendering (CSR).
+
 ## Features
 
 -   **Crawler Visibility Score:** A 0-100 weighted score based on 9 key metrics including Content Clarity, Page Structure, and AI Clarity.
@@ -37,6 +50,22 @@ The audit evaluates your page across 9 categories:
 2.  Enter the URL of the website you want to audit.
 3.  Click "Crawl Website" to generate the report.
 4.  Review the score, specific metrics, and the "Recommended Fix-it List" for actionable improvements.
+
+## Technical Architecture
+
+For developers and curious users, here is how the plugin processes a request:
+
+1.  **Crawling (`site-ai-auditor.php`)**:
+    The plugin acts as a proxy, fetching the target URL using `wp_remote_get` with a Chrome User-Agent header. It parses the raw HTML using PHP's `DOMDocument` to extract text, tags, and attributes.
+
+2.  **Scoring (`includes/scoring-rules.php`)**:
+    The extracted data is passed through 9 validators. Each validator returns a score and a list of "evidence" (e.g., specific sentences that are too long).
+
+3.  **Weighting (`includes/class-auditor-scan.php`)**:
+    The raw scores are weighted according to the **Crawler Visibility Matrix** (e.g., Content Clarity counts for 20% of the total).
+
+4.  **Rendering (`includes/class-auditor-results.php`)**:
+    The final score and evidence list are injected into an HTML template and returned to your browser via AJAX.
 
 ## Requirements
 
