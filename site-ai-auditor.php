@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AI SEO Readiness Auditor
  * Description: A high-performance SEO auditor that mimics AI crawlers to evaluate title tags, metadata, heading hierarchies, and image accessibility. Includes advanced heuristic detection for JavaScript-based sites and a scoring matrix to identify visibility gaps in the "first wave" of AI indexing.
- * Version: 2.1.0
+ * Version: 2.1.1
  * Author: CJay D Acopra
  */
 
@@ -52,8 +52,8 @@ class WebCrawler
         // CSS
         wp_enqueue_style('wc-style', plugin_dir_url(__FILE__) . 'assets/style.css');
 
-        // JS - Incremented version to 2.1.0 for cache-busting
-        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.1.0', true);
+        // JS - Incremented version to 2.1.1 for cache-busting
+        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.1.1', true);
 
         // Add variables like ajaxurl and security nonce
         wp_localize_script('wc-script', 'wcVars', [

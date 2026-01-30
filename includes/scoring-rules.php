@@ -1,7 +1,7 @@
 <?php
 /**
  * JJSC IT SOLUTIONS — AI READABILITY & SEO SCORING RULES
- * Version: 4.1 (Evidence-Based with Snippet Details)
+ * Evidence-Based with Snippet Details
  */
 
 if (!defined('ABSPATH'))

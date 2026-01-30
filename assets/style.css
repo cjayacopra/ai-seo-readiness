@@ -387,3 +387,55 @@
 }
 
 
+
+
+/* --- THEME OVERRIDES --- */
+
+/* Reset capitalization that themes might enforce */
+.webcrawler-wrapper, 
+.webcrawler-wrapper input, 
+.webcrawler-wrapper button, 
+.audit-evidence, 
+.evidence-msg,
+.evidence-content {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+/* Fix Input Field Styles */
+.webcrawler-wrapper input[type="text"] {
+    box-shadow: none !important;
+    height: auto !important;
+    min-height: 45px;
+    line-height: normal;
+}
+
+/* Fix "Show Offending Elements" Button being huge */
+.snippet-toggle {
+    width: auto !important;
+    max-width: fit-content !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    letter-spacing: normal;
+    display: inline-flex !important;
+}
+
+.snippet-toggle:hover,
+.snippet-toggle:focus {
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+    color: #374151 !important; 
+}
+
+/* Fix Heading Spacing */
+.webcrawler-wrapper h1,
+.webcrawler-wrapper h2,
+.webcrawler-wrapper h3, 
+.webcrawler-wrapper h4 {
+    margin-top: 0;
+    line-height: 1.3;
+    text-transform: none !important;
+}

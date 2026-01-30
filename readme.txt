@@ -3,7 +3,7 @@ Contributors: CJay D Acopra
 Tags: seo, ai, audit, crawler, accessibility, structured-data, schema, readability, technical-seo
 Requires at least: 5.0
 Tested up to: 6.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -41,6 +41,9 @@ This tool is an auditor; it identifies gaps. Fixing the issues it highlights (li
 
 == Changelog ==
 
+= 2.1.1 =
+*   **Fix**: Add theme override styles to normalize capitalization, input fields, button appearance, and heading spacing.
+
 = 2.1.0 =
 *   **Refactor:** Converted Image Alt and Readability scoring to a precise percentage-based system (0-100).
 *   **Feature:** Added complex sentence detection (>25 words) with detailed evidence reporting.
@@ -59,8 +62,21 @@ This tool is an auditor; it identifies gaps. Fixing the issues it highlights (li
 
 == Upgrade Notice ==
 
+= 2.1.1 =
+*   **Fix**: Add theme override styles to normalize capitalization, input fields, button appearance, and heading spacing.
+
 = 2.1.0 =
-Refined scoring accuracy for Readability and Image Alt Text, plus UI enhancements for the Fix-it List.
+*   **Refactor:** Converted Image Alt and Readability scoring to a precise percentage-based system (0-100).
+*   **Feature:** Added complex sentence detection (>25 words) with detailed evidence reporting.
+*   **Enhancement:** Improved "Fix-it List" UI with category labels and snippet dropdowns for all metric types.
+*   **Enhancement:** Refined decorative image filtering (ignoring social icons, aria-labeled links, and decorative filenames).
+*   **Fix:** Resolved scoring discrepancies for accessible content.
 
 = 2.0.0 =
-Major update featuring the new weighted scoring matrix and evidence-based reporting. Recommended for all users to improve AI visibility.
+*   **New Scoring Matrix:** Transitioned to a 9-category weighted model (v2.0).
+*   **Evidence-Based Reporting:** Enhanced DOM crawler to extract exact HTML snippets for issues.
+*   **JS Detection:** Added heuristic detection for Client-Side Rendering (CSR) framework fingerprints.
+*   **UI/UX Revamp:** New progress bars, categorized issue cards, and technical "snippet dropdowns".
+*   **Security Hardening:** Implemented `wc_crawl_nonce` verification for all AJAX operations.
+*   **Performance:** Optimized network requests with Chrome User-Agent and reduced timeouts.
+*   **Clean Versioning:** Normalized versioning to 2.0.0 across the codebase and integrated GitHub Update Checker.

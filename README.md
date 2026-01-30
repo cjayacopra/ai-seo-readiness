@@ -4,6 +4,9 @@ A high-performance WordPress plugin that mimics AI crawlers to evaluate your web
 
 ## Changelog
 
+### v2.1.1 (Critical Fix)
+*   **Fix:** Add theme override styles to normalize capitalization, input fields, button appearance, and heading spacing.
+
 ### v2.1.0 (Scoring Accuracy Update)
 *   **Refactor:** Converted "Readability" and "Image Alt Text" to a precise percentage-based scoring system (0-100).
 *   **Feature:** Added complex sentence detection (>25 words) with list-based evidence reporting.
