@@ -404,11 +404,22 @@
 
 /* 
  * Forcefully reset inherited theme styles using high-specificity selectors.
- * We include the ID #webform or .webcrawler-wrapper to beat generic theme selectors.
+ * We include the ID #webform or wrapper class to beat generic theme selectors.
+ * IMPORTANT: Targeting both possible wrapper names for safety.
  */
 
 /* 1. RESET TYPOGRAPHY & CAPITALIZATION */
 .webcrawler-wrapper,
+.ai-seo-readiness-wrapper,
+.ai-seo-readiness-wrapper h1,
+.ai-seo-readiness-wrapper h2,
+.ai-seo-readiness-wrapper h3,
+.ai-seo-readiness-wrapper h4,
+.ai-seo-readiness-wrapper p,
+.ai-seo-readiness-wrapper span,
+.ai-seo-readiness-wrapper div,
+.ai-seo-readiness-wrapper button,
+.ai-seo-readiness-wrapper input,
 .webcrawler-wrapper h1,
 .webcrawler-wrapper h2,
 .webcrawler-wrapper h3,
@@ -425,7 +436,8 @@
 }
 
 /* 2. FIX INPUT FIELD */
-.webcrawler-wrapper #webform input[type="text"] {
+.webcrawler-wrapper #webform input[type="text"],
+.ai-seo-readiness-wrapper #webform input[type="text"] {
     display: block !important;
     width: 100% !important;
     height: auto !important;
@@ -440,7 +452,8 @@
 }
 
 /* 3. FIX CRAWL BUTTON (Primary Action) */
-.webcrawler-wrapper #webform .btn-crawl {
+.webcrawler-wrapper #webform .btn-crawl,
+.ai-seo-readiness-wrapper #webform .btn-crawl {
     background: #0a66c2 !important;
     color: #ffffff !important;
     border: none !important;
@@ -453,13 +466,15 @@
     height: auto !important;
 }
 
-.webcrawler-wrapper #webform .btn-crawl:hover {
+.webcrawler-wrapper #webform .btn-crawl:hover,
+.ai-seo-readiness-wrapper #webform .btn-crawl:hover {
     background: #084c91 !important;
 }
 
 /* 4. FIX "SHOW OFFENDING ELEMENTS" (Plain Text Link Style) */
 /* Targeted specifically to override .elementor-button or generic theme buttons */
 .webcrawler-wrapper .audit-evidence button.snippet-toggle,
+.ai-seo-readiness-wrapper .audit-evidence button.snippet-toggle,
 button.snippet-toggle {
     display: inline-flex !important;
     width: auto !important;
@@ -480,7 +495,9 @@ button.snippet-toggle {
 }
 
 .webcrawler-wrapper .audit-evidence button.snippet-toggle:hover,
-.webcrawler-wrapper .audit-evidence button.snippet-toggle:focus {
+.webcrawler-wrapper .audit-evidence button.snippet-toggle:focus,
+.ai-seo-readiness-wrapper .audit-evidence button.snippet-toggle:hover,
+.ai-seo-readiness-wrapper .audit-evidence button.snippet-toggle:focus {
     background: transparent !important;
     color: #374151 !important;
     box-shadow: none !important;
@@ -491,7 +508,11 @@ button.snippet-toggle {
 .webcrawler-wrapper h1,
 .webcrawler-wrapper h2,
 .webcrawler-wrapper h3,
-.webcrawler-wrapper h4 {
+.webcrawler-wrapper h4,
+.ai-seo-readiness-wrapper h1,
+.ai-seo-readiness-wrapper h2,
+.ai-seo-readiness-wrapper h3,
+.ai-seo-readiness-wrapper h4 {
     margin-top: 0 !important;
     margin-bottom: 0.5em !important;
     line-height: 1.3 !important;
@@ -499,12 +520,14 @@ button.snippet-toggle {
     /* Allow inner colors to work */
 }
 
-.webcrawler-wrapper h1 {
+.webcrawler-wrapper h1,
+.ai-seo-readiness-wrapper h1 {
     font-size: 28px !important;
     color: #0a66c2 !important;
 }
 
-.webcrawler-wrapper h4 {
+.webcrawler-wrapper h4,
+.ai-seo-readiness-wrapper h4 {
     font-size: 16px !important;
     color: #111827 !important;
     margin-bottom: 20px !important;
