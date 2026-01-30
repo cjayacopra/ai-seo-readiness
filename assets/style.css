@@ -56,8 +56,8 @@
 }
 
 .error {
-    background: #fee2e2;           
-    color: #991b1b;                
+    background: #fee2e2;
+    color: #991b1b;
     border: 1px solid #fca5a5;
     padding: 14px 18px;
     border-radius: 8px;
@@ -68,31 +68,31 @@
 
 /* WRAPPER */
 .webcrawler-wrapper {
-    background:#f0f6fb;
-    padding:25px;
-    border-radius:12px;
+    background: #f0f6fb;
+    padding: 25px;
+    border-radius: 12px;
 }
 
 /* CARD */
 .audit-card {
-    background:#fff;
-    border-radius:12px;
-    border:1px solid #e5e7eb;
-    box-shadow:0 1px 3px rgba(0,0,0,.08);
-    margin-bottom:40px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+    margin-bottom: 40px;
 }
 
 /* HEADER */
 .audit-header {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    padding:16px 20px;
-    border-bottom:1px solid #e5e7eb;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .audit-header h3 {
-    margin:0;
-    font-size:18px;
+    margin: 0;
+    font-size: 18px;
     color: #0a66c2;
 }
 
@@ -104,52 +104,52 @@
 
 /* BODY */
 .audit-body {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:30px;
-    gap:35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 35px;
 }
 
 /* PIE GRAPH */
 .audit-score {
-    position:relative;
-    width:220px;
-    height:220px;
+    position: relative;
+    width: 220px;
+    height: 220px;
 }
 
 .audit-score svg {
-    transform:rotate(-90deg);
+    transform: rotate(-90deg);
 }
 
 .audit-score circle {
-    fill:none;
-    stroke-width:14;
+    fill: none;
+    stroke-width: 14;
 }
 
 .audit-score .bg {
-    stroke:#e5e7eb;
+    stroke: #e5e7eb;
 }
 
 .audit-score .progress {
-    stroke:url(#scoreGradient);
-    transition:stroke-dasharray .6s ease;
+    stroke: url(#scoreGradient);
+    transition: stroke-dasharray .6s ease;
 }
 
 /* CENTER TEXT */
 .score-text {
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .score-text span {
-    font-size:42px;
-    font-weight:800;
+    font-size: 42px;
+    font-weight: 800;
 }
 
 .score-text small {
@@ -160,31 +160,31 @@
 
 /* METRICS */
 .audit-metrics {
-    width:100%;
-    max-width:900px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:20px;
+    width: 100%;
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
 }
 
 .metric-header {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:6px;
-    font-size:14px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 14px;
 }
 
 .bar {
-    background:#e5e7eb;
-    height:10px;
-    border-radius:999px;
-    overflow:hidden;
+    background: #e5e7eb;
+    height: 10px;
+    border-radius: 999px;
+    overflow: hidden;
 }
 
 .bar-fill {
-    height:100%;
-    background:#3b82f6;
-    transition:width .3s ease;
+    height: 100%;
+    background: #3b82f6;
+    transition: width .3s ease;
 }
 
 /* EVIDENCE LIST */
@@ -216,8 +216,13 @@
     padding: 15px;
 }
 
-.evidence-item.severity-error { border-left-color: #ef4444; }
-.evidence-item.severity-warning { border-left-color: #f59e0b; }
+.evidence-item.severity-error {
+    border-left-color: #ef4444;
+}
+
+.evidence-item.severity-warning {
+    border-left-color: #f59e0b;
+}
 
 .evidence-header {
     display: flex;
@@ -234,8 +239,13 @@
     color: #fff;
 }
 
-.severity-error .evidence-badge { background: #ef4444; }
-.severity-warning .evidence-badge { background: #f59e0b; }
+.severity-error .evidence-badge {
+    background: #ef4444;
+}
+
+.severity-warning .evidence-badge {
+    background: #f59e0b;
+}
 
 .evidence-msg {
     font-size: 14.5px;
@@ -250,7 +260,8 @@
     gap: 8px;
 }
 
-.evidence-summary span, .evidence-fix span {
+.evidence-summary span,
+.evidence-fix span {
     font-weight: 600;
     color: #6b7280;
     margin-right: 5px;
@@ -391,51 +402,117 @@
 
 /* --- THEME OVERRIDES --- */
 
-/* Reset capitalization that themes might enforce */
-.webcrawler-wrapper, 
-.webcrawler-wrapper input, 
-.webcrawler-wrapper button, 
-.audit-evidence, 
-.evidence-msg,
-.evidence-content {
-    text-transform: none !important;
-    letter-spacing: normal !important;
-}
+/* 
+ * Forcefully reset inherited theme styles using high-specificity selectors.
+ * We include the ID #webform or .webcrawler-wrapper to beat generic theme selectors.
+ */
 
-/* Fix Input Field Styles */
-.webcrawler-wrapper input[type="text"] {
-    box-shadow: none !important;
-    height: auto !important;
-    min-height: 45px;
-    line-height: normal;
-}
-
-/* Fix "Show Offending Elements" Button being huge */
-.snippet-toggle {
-    width: auto !important;
-    max-width: fit-content !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    margin: 0 !important;
-    text-transform: none !important;
-    letter-spacing: normal;
-    display: inline-flex !important;
-}
-
-.snippet-toggle:hover,
-.snippet-toggle:focus {
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-    color: #374151 !important; 
-}
-
-/* Fix Heading Spacing */
+/* 1. RESET TYPOGRAPHY & CAPITALIZATION */
+.webcrawler-wrapper,
 .webcrawler-wrapper h1,
 .webcrawler-wrapper h2,
-.webcrawler-wrapper h3, 
-.webcrawler-wrapper h4 {
-    margin-top: 0;
-    line-height: 1.3;
+.webcrawler-wrapper h3,
+.webcrawler-wrapper h4,
+.webcrawler-wrapper p,
+.webcrawler-wrapper span,
+.webcrawler-wrapper div,
+.webcrawler-wrapper button,
+.webcrawler-wrapper input {
     text-transform: none !important;
+    letter-spacing: normal !important;
+    font-family: inherit;
+    /* Inherit font but reset style */
+}
+
+/* 2. FIX INPUT FIELD */
+.webcrawler-wrapper #webform input[type="text"] {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 45px !important;
+    padding: 12px !important;
+    border: 2px solid #0a66c2 !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    text-transform: none !important;
+    margin: 0 !important;
+}
+
+/* 3. FIX CRAWL BUTTON (Primary Action) */
+.webcrawler-wrapper #webform .btn-crawl {
+    background: #0a66c2 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    text-transform: none !important;
+    font-weight: 500 !important;
+    padding: 11px 22px !important;
+    width: auto !important;
+    /* Stop full width */
+    height: auto !important;
+}
+
+.webcrawler-wrapper #webform .btn-crawl:hover {
+    background: #084c91 !important;
+}
+
+/* 4. FIX "SHOW OFFENDING ELEMENTS" (Plain Text Link Style) */
+/* Targeted specifically to override .elementor-button or generic theme buttons */
+.webcrawler-wrapper .audit-evidence button.snippet-toggle,
+button.snippet-toggle {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 5px 0 0 0 !important;
+    color: #6b7280 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.webcrawler-wrapper .audit-evidence button.snippet-toggle:hover,
+.webcrawler-wrapper .audit-evidence button.snippet-toggle:focus {
+    background: transparent !important;
+    color: #374151 !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* 5. FIX HEADINGS SPACING & COLOR */
+.webcrawler-wrapper h1,
+.webcrawler-wrapper h2,
+.webcrawler-wrapper h3,
+.webcrawler-wrapper h4 {
+    margin-top: 0 !important;
+    margin-bottom: 0.5em !important;
+    line-height: 1.3 !important;
+    color: inherit;
+    /* Allow inner colors to work */
+}
+
+.webcrawler-wrapper h1 {
+    font-size: 28px !important;
+    color: #0a66c2 !important;
+}
+
+.webcrawler-wrapper h4 {
+    font-size: 16px !important;
+    color: #111827 !important;
+    margin-bottom: 20px !important;
+}
+
+/* 6. FIX EVIDENCE TEXT */
+.evidence-content,
+.evidence-msg {
+    text-align: left !important;
+    line-height: 1.5 !important;
 }
