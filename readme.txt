@@ -29,7 +29,7 @@ Unlike traditional SEO tools, this auditor focuses on **Machine Readability** an
 2. In your WordPress dashboard, go to **Plugins > Add New > Upload Plugin**.
 3. Select the downloaded `.zip` file and click **Install Now**.
 4. Activate the plugin.
-5. Access the auditor via the 'Web Crawler' menu in your admin dashboard, or use the shortcode `[ai-seo-readiness]` on any page.
+5. Access the auditor via the 'AISEO Auditor' menu in your admin dashboard, or use the shortcode `[ai-seo-readiness]` on any page.
 
 == Frequently Asked Questions ==
 
