@@ -1,9 +1,9 @@
 === AI SEO Readiness Auditor ===
 Contributors: CJay D Acopra
 Tags: seo, ai, audit, crawler, accessibility, structured-data, schema, readability, technical-seo
-Requires at least: 5.0
-Tested up to: 6.4
-Stable tag: 2.1.1
+Requires at least: 7.4
+Tested up to: 8.3
+Stable tag: 2.1.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,9 @@ The score is a weighted average of 9 categories, with **Content Clarity** (20%) 
 This tool is an auditor; it identifies gaps. Fixing the issues it highlights (like adding Schema or improving H1/H2 hierarchy) is a proven way to improve visibility for both AI and traditional search engines.
 
 == Changelog ==
+
+= 2.1.2 =
+*   **Enhancement**: Added warning message for pages that are not directly accessible for automated analysis.
 
 = 2.1.1 =
 *   **Fix**: Add theme override styles to normalize capitalization, input fields, button appearance, and heading spacing.

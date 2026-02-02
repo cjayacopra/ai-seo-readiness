@@ -4,6 +4,9 @@ A high-performance WordPress plugin that mimics AI crawlers to evaluate your web
 
 ## Changelog
 
+### v2.1.2 (Warning Message)
+*   **Enhancement:** Added warning message for pages that are not directly accessible for automated analysis.
+
 ### v2.1.1 (Critical Fix)
 *   **Fix:** Add theme override styles to normalize capitalization, input fields, button appearance, and heading spacing.
 

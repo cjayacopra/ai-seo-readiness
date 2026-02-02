@@ -22,8 +22,8 @@
 
             <?php if ($is_js_reliant): ?>
                 <!-- JS RELIANCE WARNING -->
-                <div class="js-warning">
-                    <div class="js-warning-header">
+                <div class="audit-warning">
+                    <div class="audit-warning-header">
                         <span class="warning-icon">⚠️</span>
                         <strong>High JavaScript Reliance Detected</strong>
                     </div>

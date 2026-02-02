@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AI SEO Readiness Auditor
  * Description: A high-performance SEO auditor that mimics AI crawlers to evaluate title tags, metadata, heading hierarchies, and image accessibility. Includes advanced heuristic detection for JavaScript-based sites and a scoring matrix to identify visibility gaps in the "first wave" of AI indexing.
- * Version: 2.1.1
+ * Version: 2.1.2
  * Author: CJay D Acopra
  */
 
@@ -52,8 +52,8 @@ class WebCrawler
         // CSS
         wp_enqueue_style('wc-style', plugin_dir_url(__FILE__) . 'assets/style.css');
 
-        // JS - Incremented version to 2.1.1 for cache-busting
-        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.1.1', true);
+        // JS - Incremented version to 2.1.2 for cache-busting
+        wp_enqueue_script('wc-script', plugin_dir_url(__FILE__) . 'assets/script.js', ['jquery'], '2.1.2', true);
 
         // Add variables like ajaxurl and security nonce
         wp_localize_script('wc-script', 'wcVars', [
@@ -123,8 +123,13 @@ class WebCrawler
         $code = wp_remote_retrieve_response_code($response);
 
         if ($code === 403 || $code === 429) {
+            $warning_html = '<div class="audit-warning">';
+            $warning_html .= '<div class="audit-warning-header"><span class="warning-icon">⚠️</span><strong>This PAGE is not directly accessible for automated analysis.</strong></div>';
+            $warning_html .= '<p>Your website is protected against automated crawlers. This is a valid editorial and security choice. Because of this, some content-based signals (like headings or readability) can’t be assessed by automated tools — including AI systems that rely on similar access patterns.</p>';
+            $warning_html .= '</div>';
+
             wp_send_json_error([
-                'error' => 'This site blocks automated crawlers (HTTP ' . $code . ').'
+                'warning' => $warning_html
             ]);
         }
 

@@ -26,6 +26,8 @@ jQuery(document).ready(function($){
                 if(response.status == true || (response.success && response.data && response.data.html)){
                     const html = response.html || response.data.html;
                     $("#results").html(html);
+                } else if (response.data && response.data.warning) {
+                    $("#results").html(response.data.warning);
                 } else {
                     const errorMsg = (response.data && response.data.error) ? response.data.error : (response.error ? response.error : 'Invalid URL or crawl blocked. Please try again.');
                     $("#results").html('<p class="error">' + errorMsg + '</p>');
