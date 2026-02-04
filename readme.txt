@@ -3,7 +3,7 @@ Contributors: CJay D Acopra
 Tags: seo, ai, audit, crawler, accessibility, structured-data, schema, readability, technical-seo
 Requires at least: 7.4
 Tested up to: 8.3
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -40,6 +40,11 @@ The score is a weighted average of 9 categories, with **Content Clarity** (20%) 
 This tool is an auditor; it identifies gaps. Fixing the issues it highlights (like adding Schema or improving H1/H2 hierarchy) is a proven way to improve visibility for both AI and traditional search engines.
 
 == Changelog ==
+
+= 2.1.3 =
+*   **Fix**: Resolved false positive "High JavaScript Reliance" warnings for WordPress sites.
+*   **Enhancement**: Added explicit WordPress platform detection with a confidence penalty to ensure SSR sites aren't misidentified.
+*   **Enhancement**: Refined framework fingerprints and Behavioral heuristics for more accurate CSR detection.
 
 = 2.1.2 =
 *   **Enhancement**: Added warning message for pages that are not directly accessible for automated analysis.

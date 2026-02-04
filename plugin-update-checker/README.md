@@ -40,8 +40,8 @@ Getting Started
 		```json
 		{
 			"name" : "Plugin Name",
-			"version" : "2.0",
-			"download_url" : "https://example.com/plugin-name-2.0.zip",
+			"version" : "2.1.3",
+			"download_url" : "https://example.com/plugin-name-2.1.3.zip",
 			"sections" : {
 				"description" : "Plugin description here. You can use HTML."
 			}
@@ -53,9 +53,9 @@ Getting Started
 	
 		```json
 		{
-			"version": "2.0",
-			"details_url": "https://example.com/version-2.0-details.html",
-			"download_url": "https://example.com/example-theme-2.0.zip"
+			"version": "2.1.3",
+			"details_url": "https://example.com/version-2.1.3-details.html",
+			"download_url" : "https://example.com/example-theme-2.1.3.zip"
 		}
 		```
 		
